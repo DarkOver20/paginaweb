@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beafany - Carrito de Compras</title>
+    <style>
+        :root {
+            --primary: #ff6b9d;
+            --secondary: #ffb6c1;
+            --accent: #d23c78;
+            --light: #fff0f5;
+            --dark: #3a0a22;
+            --text: #333333;
+            --beige: #f9f0e6;
+            --gold: #d4af37;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+            color: var(--text);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--accent);
+        }
+        
+        .cart-container {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .main-cart {
+            flex: 2;
+            min-width: 300px;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .cart-item-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: none;
+            background-color: var(--secondary);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quantity-btn:hover {
+            background-color: var(--accent);
+        }
+        
+        .remove-item {
+            background: none;
+            border: none;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .recommendations {
+            flex: 1;
+            min-width: 250px;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .recommended-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        
+        .recommended-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .add-to-cart-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .add-to-cart-btn:hover {
+            background-color: var(--primary);
+        }
+        
+        .discount-code {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .discount-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+        }
+        
+        .apply-btn {
+            background-color: var(--gold);
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        
+        .summary {
+            margin-top: 30px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding-top: 20px;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            background: linear-gradient(to right, var(--accent), var(--primary));
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .checkout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(210, 60, 120, 0.3);
+        }
+        
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .payment-method {
+            width: 50px;
+            height: 30px;
+            object-fit: contain;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 50px 0;
+            color: var(--text);
+        }
+        
+        @media (max-width: 768px) {
+            .cart-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MI CARRITO</h1>
+        
+        <div class="cart-container">
+            <div class="main-cart">
+                <div id="cart-items">
+                    <!-- Los items del carrito se agregarán aquí dinámicamente -->
+                </div>
+                
+                <div class="discount-code">
+                    <input type="text" class="discount-input" placeholder="Código de descuento">
+                    <button class="apply-btn">APLICAR</button>
+                </div>
+                
+                <div class="summary">
+                    <div class="summary-row">
+                        <span>SUBTOTAL</span>
+                        <span id="subtotal">$ 0.00</span>
+                    </div>
+                </div>
+                
+                <button id="checkout-btn" class="checkout-btn">FINALIZAR PEDIDO</button>
+                
+                <div class="payment-methods">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="payment-method">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" class="payment-method">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Kueski_logo.svg/1200px-Kueski_logo.svg.png" alt="Kueski" class="payment-method" style="object-fit: cover;">
+                </div>
+            </div>
+            
+            <div class="recommendations">
+                <h3>TAMBIÉN TE PUEDE GUSTAR</h3>
+                
+                <div class="recommended-item">
+                    <img src="https://m.media-amazon.com/images/I/61p4W+9VnVL._AC_UF1000,1000_QL80_.jpg" alt="Polvo fijador" class="recommended-img">
+                    <div>
+                        <h4>POLVO FIJADOR PINK FUTURE</h4>
+                        <p>IS BRIGHT – BEAUTY CREATIONS X BARBIE</p>
+                        <p>$ 232.00</p>
+                        <button class="add-to-cart-btn" data-id="2" data-name="POLVO FIJADOR PINK FUTURE - BEAUTY CREATIONS X BARBIE" data-price="232.00" data-img="https://m.media-amazon.com/images/I/61p4W+9VnVL._AC_UF1000,1000_QL80_.jpg">AGREGAR</button>
+                    </div>
+                </div>
+                
+                <div class="recommended-item">
+                    <img src="https://m.media-amazon.com/images/I/61X5hxuLdxL._AC_UF1000,1000_QL80_.jpg" alt="PH Lip Oil" class="recommended-img">
+                    <div>
+                        <h4>PH LIP OIL UNSTOPPABLE</h4>
+                        <p>BEAUTY CREATIONS X BARBIE</p>
+                        <p>$ 192.00</p>
+                        <button class="add-to-cart-btn" data-id="3" data-name="PH LIP OIL UNSTOPPABLE - BEAUTY CREATIONS X BARBIE" data-price="192.00" data-img="https://m.media-amazon.com/images/I/61X5hxuLdxL._AC_UF1000,1000_QL80_.jpg">AGREGAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Carrito de compras
+        let cart = [];
+        
+        // Elementos del DOM
+        const cartItemsContainer = document.getElementById('cart-items');
+        const subtotalElement = document.getElementById('subtotal');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart-btn');
+        
+        // Función para actualizar el carrito en la interfaz
+        function updateCartDisplay() {
+            cartItemsContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<div class="empty-cart">Tu carrito está vacío</div>';
+                subtotalElement.textContent = '$ 0.00';
+                return;
+            }
+            
+            let subtotal = 0;
+            
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <div class="cart-item-info">
+                        <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+                        <div>
+                            <h3>${item.name}</h3>
+                        </div>
+                    </div>
+                    <div class="cart-item-quantity">
+                        <button class="quantity-btn minus" data-index="${index}">-</button>
+                        <span>${item.quantity}</span>
+                        <button class="quantity-btn plus" data-index="${index}">+</button>
+                        <span>$ ${itemTotal.toFixed(2)}</span>
+                        <button class="remove-item" data-index="${index}">Eliminar</button>
+                    </div>
+                `;
+                
+                cartItemsContainer.appendChild(itemElement);
+            });
+            
+            subtotalElement.textContent = `$ ${subtotal.toFixed(2)}`;
+            
+            // Agregar event listeners a los nuevos botones
+            document.querySelectorAll('.quantity-btn.minus').forEach(btn => {
+                btn.addEventListener('click', decreaseQuantity);
+            });
+            
+            document.querySelectorAll('.quantity-btn.plus').forEach(btn => {
+                btn.addEventListener('click', increaseQuantity);
+            });
+            
+            document.querySelectorAll('.remove-item').forEach(btn => {
+                btn.addEventListener('click', removeItem);
+            });
+        }
+        
+        // Función para agregar producto al carrito
+        function addToCart(event) {
+            const button = event.target;
+            const id = button.getAttribute('data-id');
+            const name = button.getAttribute('data-name');
+            const price = parseFloat(button.getAttribute('data-price'));
+            const img = button.getAttribute('data-img');
+            
+            // Verificar si el producto ya está en el carrito
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id,
+                    name,
+                    price,
+                    quantity: 1,
+                    img
+                });
+            }
+            
+            updateCartDisplay();
+            
+            // Animación de confirmación
+            button.textContent = '✓ Añadido';
+            setTimeout(() => {
+                button.textContent = 'AGREGAR';
+            }, 2000);
+        }
+        
+        // Función para disminuir cantidad
+        function decreaseQuantity(event) {
+            const index = event.target.getAttribute('data-index');
+            if (cart[index].quantity > 1) {
+                cart[index].quantity -= 1;
+                updateCartDisplay();
+            }
+        }
+        
+        // Función para aumentar cantidad
+        function increaseQuantity(event) {
+            const index = event.target.getAttribute('data-index');
+            cart[index].quantity += 1;
+            updateCartDisplay();
+        }
+        
+        // Función para eliminar item
+        function removeItem(event) {
+            const index = event.target.getAttribute('data-index');
+            cart.splice(index, 1);
+            updateCartDisplay();
+        }
+        
+        // Función para finalizar compra
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío');
+                return;
+            }
+            
+            // Crear resumen del pedido
+            let orderSummary = "Buenas tardes, quisiera consultar sobre la existencia de estos productos:\n\n";
+            
+            cart.forEach(item => {
+                orderSummary += `- ${item.name} (Cantidad: ${item.quantity}, Precio unitario: $${item.price.toFixed(2)})\n`;
+            });
+            
+            orderSummary += `\nTotal: $${calculateSubtotal().toFixed(2)}`;
+            
+            // Codificar el mensaje para WhatsApp
+            const encodedMessage = encodeURIComponent(orderSummary);
+            const whatsappNumber = "1234567890"; // Reemplaza con tu número de WhatsApp
+            
+            // Abrir WhatsApp con el mensaje
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+        }
+        
+        // Función para calcular subtotal
+        function calculateSubtotal() {
+            return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+        }
+        
+        // Event listeners
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', addToCart);
+        });
+        
+        checkoutBtn.addEventListener('click', checkout);
+        
+        // Inicializar carrito
+        updateCartDisplay();
+        
+        // Opcional: Puedes cargar un carrito existente desde localStorage
+        function loadCartFromStorage() {
+            const savedCart = localStorage.getItem('beafany_cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartDisplay();
+            }
+        }
+        
+        // Opcional: Guardar carrito en localStorage cuando cambia
+        function saveCartToStorage() {
+            localStorage.setItem('beafany_cart', JSON.stringify(cart));
+        }
+        
+        // Descomenta estas líneas si quieres persistencia del carrito
+        // loadCartFromStorage();
+        // window.addEventListener('beforeunload', saveCartToStorage);
+    </script>
+</body>
+</html>
