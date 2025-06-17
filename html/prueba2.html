@@ -1252,4 +1252,980 @@
             cursor: pointer;
         }
 
-       
+        .summary {
+            margin-top: 30px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding-top: 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: linear-gradient(to right, var(--accent), var(--primary));
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(210, 60, 120, 0.3);
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .payment-method {
+            width: 50px;
+            height: 30px;
+            object-fit: contain;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 50px 0;
+            color: var(--text);
+        }
+
+        /* Animation for modal */
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments for cart */
+        @media (max-width: 768px) {
+            .cart-modal-content {
+                margin: 20px auto;
+                padding: 20px;
+                width: 95%;
+            }
+            
+            .cart-container {
+                flex-direction: column;
+            }
+            
+            .cart-modal-header h2 {
+                font-size: 22px;
+            }
+
+            .cart-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .cart-item-quantity {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-text h2 {
+                font-size: 40px;
+            }
+            
+            .carousel-container {
+                height: 400px;
+            }
+            
+            .section-title h2 {
+                font-size: 36px;
+            }
+            
+            .cta h2 {
+                font-size: 36px;
+            }
+
+            .nav-links li {
+                margin-left: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 40px;
+                transition: left 0.4s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 20px 0;
+            }
+            
+            .nav-links a {
+                font-size: 18px;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero {
+                padding: 140px 0 80px;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 50px;
+                text-align: center;
+            }
+            
+            .hero-text h2::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .hero-text p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .carousel-container {
+                height: 350px;
+                transform: perspective(1000px) rotateY(0);
+            }
+            
+            .section-title h2 {
+                font-size: 32px;
+            }
+            
+            .payment-icon {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .payment-icon i {
+                font-size: 30px;
+            }
+            
+            .cta h2 {
+                font-size: 32px;
+            }
+            
+            .footer-column {
+                min-width: 50%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-text h2 {
+                font-size: 32px;
+            }
+            
+            .btn, .whatsapp-btn {
+                padding: 12px 25px;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonial {
+                padding: 30px 20px;
+            }
+            
+            .footer-column {
+                min-width: 100%;
+                margin-bottom: 30px;
+            }
+
+            .cart-modal-content {
+                padding: 15px;
+            }
+
+            .recommended-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#inicio" class="logo">
+                    <img src="../img/5071563822422142687.jpg" alt="Beafany Logo">
+                    <h1>Beafany</h1>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#testimonios">Testimonios</a></li>
+                    <li><a href="#pagos">Métodos de Pago</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+                <div class="cart-icon-container">
+                    <div class="cart-icon" id="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </div>
+                </div>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>Descubre tu belleza única con Beafany</h2>
+                    <p>En Beafany creemos que cada persona tiene una belleza única. Nuestros productos de maquillaje premium están diseñados para realzar tu belleza natural, no para cubrirla. Descubre la diferencia con ingredientes de calidad y colores que celebran tu individualidad.</p>
+                    <a href="#productos" class="btn">Explorar Colección <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="carousel-container">
+                    <div class="carousel-slide active">
+                    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Maquillaje Beafany">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Productos de belleza">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Maquillaje profesional">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section class="products" id="productos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestra Colección</h2>
+                <p>Cada producto Beafany está diseñado pensando en ti, para que te sientas radiante en cada momento.</p>
+            </div>
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-badge">Nuevo</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Base de maquillaje Beafany">
+                    </div>
+                    <div class="product-info">
+                        <h3>Base Líquida HD</h3>
+                        <p>Cobertura ajustable con tecnología que se adapta a tu piel, dejando un acabado natural y radiante durante 24 horas.</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(128)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$24.99</span>
+                            <button class="add-to-cart" data-id="1" data-name="Base Líquida HD" data-price="24.99" data-img="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"><i class="fas fa-shopping-bag"></i> Añadir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-badge">Más vendido</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1596704017256-dfb5e4dcf7fe?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Paleta de sombras Beafany">
+                    </div>
+                    <div class="product-info">
+                        <h3>Paleta de Sombras</h3>
+                        <p>14 tonos ultra pigmentados con fórmula cremosa que se difumina como un sueño. Ideal para crear looks desde naturales hasta dramáticos.</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(342)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$32.99</span>
+                            <button class="add-to-cart" data-id="2" data-name="Paleta de Sombras" data-price="32.99" data-img="https://images.unsplash.com/photo-1596704017256-dfb5e4dcf7fe?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"><i class="fas fa-shopping-bag"></i> Añadir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-badge">Edición Limitada</div>
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Labial líquido Beafany">
+                    </div>
+                    <div class="product-info">
+                        <h3>Labial Líquido Matte</h3>
+                        <p>Larga duración sin resecar tus labios. Disponible en 12 tonos vibrantes inspirados en flores tropicales.</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(276)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$18.99</span>
+                            <button class="add-to-cart" data-id="3" data-name="Labial Líquido Matte" data-price="18.99" data-img="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"><i class="fas fa-shopping-bag"></i> Añadir</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1607602132700-068120a1d079?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Rubor en crema Beafany">
+                    </div>
+                    <div class="product-info">
+                        <h3>Rubor en Crema</h3>
+                        <p>Fórmula cremosa que se funde con la piel para un rubor natural. Perfecto para el efecto "piel sana" que todos amamos.</p>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(189)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price">$15.99</span>
+                            <button class="add-to-cart" data-id="4" data-name="Rubor en Crema" data-price="15.99" data-img="https://images.unsplash.com/photo-1607602132700-068120a1d079?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"><i class="fas fa-shopping-bag"></i> Añadir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center" style="margin-top: 50px;">
+                <a href="#" class="btn">Ver toda la colección <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods -->
+    <section class="payment-methods" id="pagos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Métodos de Pago</h2>
+                <p>Aceptamos múltiples formas de pago para que puedas adquirir tus productos favoritos de la manera más conveniente para ti.</p>
+            </div>
+            <div class="payment-icons">
+                <div class="payment-icon" data-tooltip="PayPal">
+                    <i class="fab fa-cc-paypal"></i>
+                </div>
+                <div class="payment-icon" data-tooltip="Visa">
+                    <i class="fab fa-cc-visa"></i>
+                </div>
+                <div class="payment-icon" data-tooltip="Mastercard">
+                    <i class="fab fa-cc-mastercard"></i>
+                </div>
+                <div class="payment-icon" data-tooltip="American Express">
+                    <i class="fab fa-cc-amex"></i>
+                </div>
+                <div class="payment-icon" data-tooltip="Transferencia Bancaria">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="payment-icon" data-tooltip="Efectivo">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonios">
+        <div class="container">
+            <div class="section-title">
+                <h2>Lo que dicen nuestros clientes</h2>
+                <p>Descubre las experiencias de quienes ya han probado nuestros productos.</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial active">
+                    <div class="testimonial-text">
+                        Los productos de Beafany han transformado mi rutina de maquillaje. La base líquida se siente tan ligera que a veces olvido que la llevo puesta, pero con una cobertura impecable que dura todo el día.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://randomuser.me/api/portraits/women/43.jpg" alt="Cliente satisfecho">
+                        </div>
+                        <div class="author-info">
+                            <h4>María González</h4>
+                            <p>Clienta desde 2021</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        Como maquilladora profesional, exijo mucho de los productos que uso. La paleta de sombras de Beafany se ha convertido en una de mis favoritas por su pigmentación y facilidad para difuminar. Mis clientas siempre preguntan por ella.
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Cliente satisfecho">
+                        </div>
+                        <div class="author-info">
+                            <h4>Laura Martínez</h4>
+                            <p>Maquilladora profesional</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        El labial líquido matte es simplemente perfecto. No se reseca mis labios como otras marcas y el color dura horas sin necesidad de retoques. ¡Ya tengo 5 tonos diferentes!
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Cliente satisfecho">
+                        </div>
+                        <div class="author-info">
+                            <h4>Ana Rodríguez</h4>
+                            <p>Fanática del maquillaje</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contacto">
+        <div class="container">
+            <h2>¿Necesitas ayuda para elegir tus productos?</h2>
+            <p>Nuestro equipo de expertos en belleza está listo para asesorarte personalmente. Cuéntanos qué estás buscando y te ayudaremos a encontrar los productos perfectos para ti.</p>
+            <div class="cta-buttons">
+                <a href="https://wa.me/1234567890" class="whatsapp-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Chatear por WhatsApp
+                </a>
+                <a href="mailto:asesor@beafany.com" class="btn" style="background-color: transparent; border: 2px solid white; margin-left: 15px;">
+                    <i class="fas fa-envelope"></i> Enviar Email
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Beafany</h3>
+                    <p>Maquillaje que celebra la belleza única en cada persona. Productos de calidad, éticos y diseñados para realzar tu naturalidad.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Comprar</h3>
+                    <ul>
+                        <li><a href="#">Novedades</a></li>
+                        <li><a href="#">Mejores vendidos</a></li>
+                        <li><a href="#">Ofertas especiales</a></li>
+                        <li><a href="#">Ediciones limitadas</a></li>
+                        <li><a href="#">Regalos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Información</h3>
+                    <ul>
+                        <li><a href="#">Sobre nosotros</a></li>
+                        <li><a href="#">Nuestra filosofía</a></li>
+                        <li><a href="#">Blog de belleza</a></li>
+                        <li><a href="#">Tutoriales</a></li>
+                        <li><a href="#">Trabaja con nosotros</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Ayuda</h3>
+                    <ul>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Preguntas frecuentes</a></li>
+                        <li><a href="#">Envíos y devoluciones</a></li>
+                        <li><a href="#">Política de privacidad</a></li>
+                        <li><a href="#">Términos y condiciones</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> hola@beafany.com</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Av. Belleza 123, Ciudad</li>
+                        <li><i class="fas fa-clock"></i> Lunes a Viernes: 9am - 6pm</li>
+                    </ul>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Tu correo electrónico">
+                        <button type="submit">Suscribirme <i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Beafany. Todos los derechos reservados. Diseñado con <i class="fas fa-heart" style="color: var(--accent);"></i> para celebrar tu belleza.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Carrito Modal -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-modal-content">
+            <div class="cart-modal-header">
+                <h2>MI CARRITO</h2>
+                <button class="close-cart">&times;</button>
+            </div>
+            
+            <div class="cart-container">
+                <div class="main-cart">
+                    <div id="cart-items">
+                        <!-- Los items del carrito se agregarán aquí dinámicamente -->
+                    </div>
+                    
+                    <div class="discount-code">
+                        <input type="text" class="discount-input" placeholder="Código de descuento">
+                        <button class="apply-btn">APLICAR</button>
+                    </div>
+                    
+                    <div class="summary">
+                        <div class="summary-row">
+                            <span>SUBTOTAL</span>
+                            <span id="subtotal">$ 0.00</span>
+                        </div>
+                    </div>
+                    
+                    <button id="checkout-btn" class="checkout-btn">FINALIZAR PEDIDO</button>
+                    
+                    <div class="payment-methods">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" class="payment-method">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" class="payment-method">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Kueski_logo.svg/1200px-Kueski_logo.svg.png" alt="Kueski" class="payment-method" style="object-fit: cover;">
+                    </div>
+                </div>
+                
+                <div class="recommendations">
+                    <h3>TAMBIÉN TE PUEDE GUSTAR</h3>
+                    
+                    <div class="recommended-item">
+                        <img src="https://m.media-amazon.com/images/I/61p4W+9VnVL._AC_UF1000,1000_QL80_.jpg" alt="Polvo fijador" class="recommended-img">
+                        <div>
+                            <h4>POLVO FIJADOR PINK FUTURE</h4>
+                            <p>IS BRIGHT – BEAUTY CREATIONS X BARBIE</p>
+                            <p>$ 232.00</p>
+                            <button class="add-to-cart-btn" data-id="5" data-name="POLVO FIJADOR PINK FUTURE - BEAUTY CREATIONS X BARBIE" data-price="232.00" data-img="https://m.media-amazon.com/images/I/61p4W+9VnVL._AC_UF1000,1000_QL80_.jpg">AGREGAR</button>
+                        </div>
+                    </div>
+                    
+                    <div class="recommended-item">
+                        <img src="https://m.media-amazon.com/images/I/61X5hxuLdxL._AC_UF1000,1000_QL80_.jpg" alt="PH Lip Oil" class="recommended-img">
+                        <div>
+                            <h4>PH LIP OIL UNSTOPPABLE</h4>
+                            <p>BEAUTY CREATIONS X BARBIE</p>
+                            <p>$ 192.00</p>
+                            <button class="add-to-cart-btn" data-id="6" data-name="PH LIP OIL UNSTOPPABLE - BEAUTY CREATIONS X BARBIE" data-price="192.00" data-img="https://m.media-amazon.com/images/I/61X5hxuLdxL._AC_UF1000,1000_QL80_.jpg">AGREGAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        });
+        
+        // Carousel Functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        
+        function showSlide(n) {
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+                slide.querySelector('img').style.transform = 'scale(1)';
+            });
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            slides[currentSlide].querySelector('img').style.transform = 'scale(1.05)';
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        // Change slide every 5 seconds
+        setInterval(nextSlide, 5000);
+        
+        // Testimonial Slider
+        const testimonials = document.querySelectorAll('.testimonial');
+        const dots = document.querySelectorAll('.dot');
+        let currentTestimonial = 0;
+        
+        function showTestimonial(n) {
+            testimonials.forEach(testimonial => testimonial.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            currentTestimonial = (n + testimonials.length) % testimonials.length;
+            testimonials[currentTestimonial].classList.add('active');
+            dots[currentTestimonial].classList.add('active');
+        }
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showTestimonial(index);
+            });
+        });
+        
+        // Auto-rotate testimonials every 7 seconds
+        setInterval(() => {
+            showTestimonial(currentTestimonial + 1);
+        }, 7000);
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Carrito de compras
+        let cart = [];
+        const cartIcon = document.getElementById('cart-icon');
+        const cartModal = document.getElementById('cart-modal');
+        const closeCart = document.querySelector('.close-cart');
+        const cartCount = document.getElementById('cart-count');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const subtotalElement = document.getElementById('subtotal');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart, .add-to-cart-btn');
+        
+        // Abrir/cerrar carrito
+        cartIcon.addEventListener('click', () => {
+            cartModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeCart.addEventListener('click', () => {
+            cartModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Cerrar al hacer clic fuera del modal
+        window.addEventListener('click', (e) => {
+            if (e.target === cartModal) {
+                cartModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Función para actualizar el carrito en la interfaz
+        function updateCartDisplay() {
+            cartItemsContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<div class="empty-cart">Tu carrito está vacío</div>';
+                subtotalElement.textContent = '$ 0.00';
+                cartCount.textContent = '0';
+                return;
+            }
+            
+            let subtotal = 0;
+            
+            cart.forEach((item, index) => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <div class="cart-item-info">
+                        <img src="${item.img}" alt="${item.name}" class="cart-item-img">
+                        <div>
+                            <h3>${item.name}</h3>
+                        </div>
+                    </div>
+                    <div class="cart-item-quantity">
+                        <button class="quantity-btn minus" data-index="${index}">-</button>
+                        <span>${item.quantity}</span>
+                        <button class="quantity-btn plus" data-index="${index}">+</button>
+                        <span>$ ${itemTotal.toFixed(2)}</span>
+                        <button class="remove-item" data-index="${index}">Eliminar</button>
+                    </div>
+                `;
+                
+                cartItemsContainer.appendChild(itemElement);
+            });
+            
+            subtotalElement.textContent = `$ ${subtotal.toFixed(2)}`;
+            cartCount.textContent = cart.reduce((total, item) => total + item.quantity, 0);
+            
+            // Agregar event listeners a los nuevos botones
+            document.querySelectorAll('.quantity-btn.minus').forEach(btn => {
+                btn.addEventListener('click', decreaseQuantity);
+            });
+            
+            document.querySelectorAll('.quantity-btn.plus').forEach(btn => {
+                btn.addEventListener('click', increaseQuantity);
+            });
+            
+            document.querySelectorAll('.remove-item').forEach(btn => {
+                btn.addEventListener('click', removeItem);
+            });
+        }
+        
+        // Función para agregar producto al carrito
+        function addToCart(event) {
+            const button = event.target.closest('.add-to-cart, .add-to-cart-btn');
+            if (!button) return;
+            
+            const id = button.getAttribute('data-id') || Math.random().toString(36).substr(2, 9);
+            const name = button.getAttribute('data-name') || button.closest('.product-card').querySelector('h3').textContent;
+            const priceText = button.getAttribute('data-price') || button.closest('.product-card').querySelector('.price').textContent;
+            const price = parseFloat(priceText.replace(/[^0-9.-]+/g,""));
+            const img = button.getAttribute('data-img') || button.closest('.product-card').querySelector('.product-image img').src;
+            
+            // Verificar si el producto ya está en el carrito
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id,
+                    name,
+                    price,
+                    quantity: 1,
+                    img
+                });
+            }
+            
+            updateCartDisplay();
+            
+            // Animación de confirmación
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check"></i> Añadido';
+            button.style.backgroundColor = '#4CAF50';
+            
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.style.backgroundColor = '';
+            }, 2000);
+            
+            // Mostrar el carrito automáticamente
+            cartModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // Función para disminuir cantidad
+        function decreaseQuantity(event) {
+            const index = event.target.getAttribute('data-index');
+            if (cart[index].quantity > 1) {
+                cart[index].quantity -= 1;
+                updateCartDisplay();
+            }
+        }
+        
+        // Función para aumentar cantidad
+        function increaseQuantity(event) {
+            const index = event.target.getAttribute('data-index');
+            cart[index].quantity += 1;
+            updateCartDisplay();
+        }
+        
+        // Función para eliminar item
+        function removeItem(event) {
+            const index = event.target.getAttribute('data-index');
+            cart.splice(index, 1);
+            updateCartDisplay();
+        }
+        
+        // Función para finalizar compra
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío');
+                return;
+            }
+            
+            // Crear resumen del pedido
+            let orderSummary = "Buenas tardes, quisiera consultar sobre la existencia de estos productos:\n\n";
+            
+            cart.forEach(item => {
+                orderSummary += `- ${item.name} (Cantidad: ${item.quantity}, Precio unitario: $${item.price.toFixed(2)})\n`;
+            });
+            
+            const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            orderSummary += `\nTotal: $${subtotal.toFixed(2)}`;
+            
+            // Codificar el mensaje para WhatsApp
+            const encodedMessage = encodeURIComponent(orderSummary);
+            const whatsappNumber = "1234567890"; // Reemplaza con tu número de WhatsApp
+            
+            // Abrir WhatsApp con el mensaje
+            window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+            
+            // Cerrar el modal
+            cartModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            
+            // Opcional: Vaciar el carrito después del checkout
+            // cart = [];
+            // updateCartDisplay();
+        }
+        
+        // Event listeners
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', addToCart);
+        });
+        
+        checkoutBtn.addEventListener('click', checkout);
+        
+        // Inicializar carrito
+        updateCartDisplay();
+        
+        // Opcional: Puedes cargar un carrito existente desde localStorage
+        function loadCartFromStorage() {
+            const savedCart = localStorage.getItem('beafany_cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCartDisplay();
+            }
+        }
+        
+        // Opcional: Guardar carrito en localStorage cuando cambia
+        function saveCartToStorage() {
+            localStorage.setItem('beafany_cart', JSON.stringify(cart));
+        }
+        
+        // Descomenta estas líneas si quieres persistencia del carrito
+        // loadCartFromStorage();
+        // window.addEventListener('beforeunload', saveCartToStorage);
+        
+        // Animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.feature-card, .product-card, .section-title');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        // Set initial state for animated elements
+        document.querySelectorAll('.feature-card, .product-card, .section-title').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
