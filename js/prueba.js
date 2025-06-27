@@ -324,35 +324,102 @@
     window.addEventListener('scroll', animateOnScroll);
     window.addEventListener('load', animateOnScroll);
 // Cambiar imagen y datos según el tono seleccionado para el primer producto
-document.querySelectorAll('.tone-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        // Quitar clase active de todos los botones
-        document.querySelectorAll('.tone-btn').forEach(b => b.classList.remove('active'));
-        // Agregar clase active al botón seleccionado
-        this.classList.add('active');
-        // Cambiar la imagen principal
-        const imgUrl = this.getAttribute('data-img');
-        document.getElementById('product1-main-img').src = imgUrl;
-        // Cambiar el atributo data-img y data-tone del botón de añadir al carrito
-        const addToCartBtn = document.getElementById('product1-add-to-cart');
-        addToCartBtn.setAttribute('data-img', imgUrl);
-        addToCartBtn.setAttribute('data-tone', this.getAttribute('data-tone'));
-    });
+document.addEventListener('DOMContentLoaded', function() {
+    // Función para manejar el cambio de tonos
+    function setupToneSelectors() {
+        document.querySelectorAll('.tone-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const productCard = this.closest('.product-card');
+                const mainImage = productCard.querySelector('.main-product-img');
+                const newImageSrc = this.getAttribute('data-img');
+                const toneName = this.getAttribute('data-tone');
+                
+                // Actualizar la imagen principal
+                mainImage.src = newImageSrc;
+                
+                // Actualizar el botón activo
+                productCard.querySelectorAll('.tone-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Actualizar el data-tone en el botón de añadir al carrito
+                const addToCartBtn = productCard.querySelector('.add-to-cart');
+                if (addToCartBtn) {
+                    addToCartBtn.setAttribute('data-tone', toneName);
+                    addToCartBtn.setAttribute('data-img', newImageSrc);
+                }
+            });
+        });
+    }
+    
+    // Inicializar los selectores de tono
+    setupToneSelectors();
+    
+    // Tu código existente del carrito aquí...
 });
 
-// Cambiar imagen y datos según el tono seleccionado para el segundo producto
-document.querySelectorAll('.tone2-btn').forEach(btn => {
-    btn.addEventListener('click', function() {
-        // Quitar clase active de todos los botones
-        document.querySelectorAll('.tone2-btn').forEach(b => b.classList.remove('active'));
-        // Agregar clase active al botón seleccionado
-        this.classList.add('active');
-        // Cambiar la imagen principal
-        const imgUrl = this.getAttribute('data-img');
-        document.getElementById('product2-main-img').src = imgUrl;
-        // Cambiar el atributo data-img y data-tone del botón de añadir al carrito
-        const addToCartBtn = document.getElementById('product2-add-to-cart');
-        addToCartBtn.setAttribute('data-img', imgUrl);
-        addToCartBtn.setAttribute('data-tone', this.getAttribute('data-tone'));
+
+document.addEventListener('DOMContentLoaded', function() {
+    const header = document.getElementById('header');
+    let lastScroll = 0;
+    const scrollThreshold = 100; // Cuántos píxeles hay que desplazar para activar el efecto
+    
+    window.addEventListener('scroll', function() {
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll <= 0) {
+            // Estamos en la parte superior de la página
+            header.classList.remove('hidden');
+            header.classList.add('scrolled');
+            return;
+        }
+        
+        if (currentScroll > lastScroll && currentScroll > scrollThreshold) {
+            // Scroll hacia abajo - ocultar header
+            header.classList.add('hidden');
+        } else if (currentScroll < lastScroll) {
+            // Scroll hacia arriba - mostrar header
+            header.classList.remove('hidden');
+            
+            // Añadir clase scrolled si no está en la parte superior
+            if (currentScroll > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+        
+        lastScroll = currentScroll;
     });
+
+    // Tu código existente para el selector de tonos...
+    function setupToneSelectors() {
+        document.querySelectorAll('.tone-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const productCard = this.closest('.product-card');
+                const mainImage = productCard.querySelector('.main-product-img');
+                const newImageSrc = this.getAttribute('data-img');
+                const toneName = this.getAttribute('data-tone');
+                
+                // Actualizar la imagen principal
+                mainImage.src = newImageSrc;
+                
+                // Actualizar el botón activo
+                productCard.querySelectorAll('.tone-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Actualizar el data-tone en el botón de añadir al carrito
+                const addToCartBtn = productCard.querySelector('.add-to-cart');
+                if (addToCartBtn) {
+                    addToCartBtn.setAttribute('data-tone', toneName);
+                    addToCartBtn.setAttribute('data-img', newImageSrc);
+                }
+            });
+        });
+    }
+    
+    setupToneSelectors();
 });
