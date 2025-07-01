@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beafany - Maquillaje</title>
+    <meta name="description" content="Productos de maquillaje de alta calidad que celebran tu belleza única. Envíos a todo el país.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-container">
+                <a href="#hero" class="logo">
+                    <img src="/placeholder.svg?height=50&width=50" alt="Beafany Logo">
+                    <span>Beafany</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#hero">Inicio</a></li>
+                    <li><a href="#products">Productos</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+                <div class="header-actions">
+                    <div class="cart-icon" id="cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </div>
+                    <div class="menu-toggle" id="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Descubre tu <span>belleza única</span> con Beafany</h1>
+                    <p>¡Bienvenida a Beafany! Aquí celebramos tu belleza con productos pensados para ti. Inspírate, juega y descubre el maquillaje que te hará sentir única cada día.</p>
+                    <div class="hero-buttons">
+                        <a href="#products" class="btn">Explorar Colección <i class="fas fa-arrow-right"></i></a>
+                        <a href="#contact" class="btn btn-outline">Contáctanos <i class="fas fa-heart"></i></a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="/placeholder.svg?height=600&width=500" alt="Productos Beafany">
+                    <div class="hero-badge">Nueva Colección</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NUEVA SECCIÓN DE FILTROS INTELIGENTES -->
+    <section class="products-section" id="products">
+        <div class="container">
+            <!-- Header de productos con filtros compactos -->
+            <div class="products-header">
+                <div class="section-title-compact">
+                    <h2>Descubre tu belleza ideal</h2>
+                    <p>Productos de alta calidad formulados para realzar tu belleza natural</p>
+                </div>
+                
+                <!-- Filtros rápidos siempre visibles -->
+                <div class="quick-filters">
+                    <div class="quick-filters-row">
+                        <div class="category-pills">
+                            <button class="category-pill active" data-filter="all">
+                                <span>Todos</span>
+                                <div class="pill-count">12</div>
+                            </button>
+                            <button class="category-pill" data-filter="labios">
+                                <i class="fas fa-kiss"></i>
+                                <span>Labiales</span>
+                                <div class="pill-count">5</div>
+                            </button>
+                            <button class="category-pill" data-filter="ojos">
+                                <i class="fas fa-eye"></i>
+                                <span>Ojos</span>
+                                <div class="pill-count">3</div>
+                            </button>
+                            <button class="category-pill" data-filter="rostro">
+                                <i class="fas fa-smile"></i>
+                                <span>Rostro</span>
+                                <div class="pill-count">2</div>
+                            </button>
+                            <button class="category-pill" data-filter="brochas">
+                                <i class="fas fa-paint-brush"></i>
+                                <span>Brochas</span>
+                                <div class="pill-count">2</div>
+                            </button>
+                        </div>
+                        
+                        <div class="filter-actions">
+                            <!-- Botón de filtros avanzados -->
+                            <button class="advanced-filters-btn" id="advanced-filters-btn">
+                                <i class="fas fa-sliders-h"></i>
+                                <span>Filtros</span>
+                            </button>
+                            
+                            <!-- Búsqueda rápida -->
+                            <div class="quick-search">
+                                <i class="fas fa-search"></i>
+                                <input type="text" placeholder="Buscar..." class="search-input-compact" id="search-input-compact">
+                            </div>
+                            
+                            <!-- Ordenamiento -->
+                            <select class="sort-select-compact" id="sort-select-compact">
+                                <option value="featured">Destacados</option>
+                                <option value="price-low">Precio ↑</option>
+                                <option value="price-high">Precio ↓</option>
+                                <option value="name">A-Z</option>
+                                <option value="newest">Nuevos</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <!-- Filtros activos compactos -->
+                    <div class="active-filters-compact" id="active-filters-compact">
+                        <div class="active-filters-list" id="active-filters-list">
+                            <!-- Los filtros activos aparecerán aquí -->
+                        </div>
+                        <div class="results-info">
+                            <span id="results-count">12 productos encontrados</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid de productos -->
+            <div class="product-grid">
+                <!-- Producto 1 -->
+                <div class="product-card" data-category="rostro" data-name="Blush marmoleado Dolce Bella" data-price="5">
+                    <div class="product-badge">Nuevo</div>
+                    <div class="product-image">
+                        <img src="/placeholder.svg?height=350&width=300" alt="Blush marmoleado Dolce Bella" class="main-product-img">
+                        <div class="product-actions">
+                            <button class="quick-view-btn">Ver detalles</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-header">
+                            <h3>Blush marmoleado Dolce Bella</h3>
+                            <p class="product-description">Rubor ligero de larga duración para un aspecto fresco y natural</p>
+                        </div>
+                        
+                        <div class="tone-selector">
+                            <div class="tone-options">
+                                <div class="tone-option active" data-img="/placeholder.svg?height=350&width=300" data-tone="Rosewood">
+                                    <span class="tone-color" style="background: #FFB6C1;"></span>
+                                    <span class="tone-name">Rosewood</span>
+                                </div>
+                                <div class="tone-option" data-img="/placeholder.svg?height=350&width=300" data-tone="Dar Me">
+                                    <span class="tone-color" style="background: #D23C78;"></span>
+                                    <span class="tone-name">Dar Me</span>
+                                </div>
+                                <div class="tone-option" data-img="/placeholder.svg?height=350&width=300" data-tone="Picante">
+                                    <span class="tone-color" style="background: #FF6B9D;"></span>
+                                    <span class="tone-name">Picante</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-footer">
+                            <span class="price">$5.00</span>
+                            <button class="add-to-cart" 
+                                data-id="1" 
+                                data-name="Blush marmoleado Dolce Bella" 
+                                data-price="5" 
+                                data-img="/placeholder.svg?height=350&width=300"
+                                data-tone="Rosewood">
+                                <i class="fas fa-shopping-bag"></i> Añadir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="product-card" data-category="labios" data-name="Labial Matte Dolce Bella" data-price="3">
+                    <div class="product-badge">Más vendido</div>
+                    <div class="product-image">
+                        <img src="/placeholder.svg?height=350&width=300" alt="Labial Matte en barra Dolce Bella" class="main-product-img">
+                        <div class="product-actions">
+                            <button class="quick-view-btn">Ver detalles</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-header">
+                            <h3>Labial Matte Dolce Bella</h3>
+                            <p class="product-description">Color intenso con acabado mate y fórmula hidratante</p>
+                        </div>
+                        
+                        <div class="tone-selector">
+                            <div class="tone-options">
+                                <div class="tone-option active" data-img="/placeholder.svg?height=350&width=300" data-tone="Jungle">
+                                    <span class="tone-color" style="background: #8B4513;"></span>
+                                    <span class="tone-name">Jungle</span>
+                                </div>
+                                <div class="tone-option" data-img="/placeholder.svg?height=350&width=300" data-tone="Sunkiss">
+                                    <span class="tone-color" style="background: #FFA07A;"></span>
+                                    <span class="tone-name">Sunkiss</span>
+                                </div>
+                                <div class="tone-option" data-img="/placeholder.svg?height=350&width=300" data-tone="Myst">
+                                    <span class="tone-color" style="background: #800080;"></span>
+                                    <span class="tone-name">Myst</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-footer">
+                            <span class="price">$3.00</span>
+                            <button class="add-to-cart" 
+                                data-id="2" 
+                                data-name="Labial Matte Dolce Bella" 
+                                data-price="3" 
+                                data-img="/placeholder.svg?height=350&width=300"
+                                data-tone="Jungle">
+                                <i class="fas fa-shopping-bag"></i> Añadir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Producto 3 -->
+                <div class="product-card" data-category="labios" data-name="Brillo Labial Sheglam" data-price="18.99">
+                    <div class="product-badge">Edición limitada</div>
+                    <div class="product-image">
+                        <img src="/placeholder.svg?height=350&width=300" alt="Brillo Labial Sheglam" class="main-product-img">
+                        <div class="product-actions">
+                            <button class="quick-view-btn">Ver detalles</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-header">
+                            <h3>Brillo Labial Sheglam</h3>
+                            <p class="product-description">Brillo intenso con fórmula ligera y no pegajosa</p>
+                        </div>
+                        
+                        <div class="tone-selector">
+                            <div class="tone-options">
+                                <div class="tone-option active" data-img="/placeholder.svg?height=350&width=300" data-tone="Beauty Sleep">
+                                    <span class="tone-color" style="background: #FFC0CB;"></span>
+                                    <span class="tone-name">Beauty Sleep</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-footer">
+                            <span class="price">$18.99</span>
+                            <button class="add-to-cart" 
+                                data-id="3" 
+                                data-name="Brillo Labial Sheglam" 
+                                data-price="18.99" 
+                                data-img="/placeholder.svg?height=350&width=300"
+                                data-tone="Beauty Sleep">
+                                <i class="fas fa-shopping-bag"></i> Añadir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Más productos para demostrar el filtrado -->
+                <div class="product-card" data-category="ojos" data-name="Sombra de Ojos Palette" data-price="15.50">
+                    <div class="product-badge">Popular</div>
+                    <div class="product-image">
+                        <img src="/placeholder.svg?height=350&width=300" alt="Sombra de Ojos Palette" class="main-product-img">
+                        <div class="product-actions">
+                            <button class="quick-view-btn">Ver detalles</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-header">
+                            <h3>Sombra de Ojos Palette</h3>
+                            <p class="product-description">Paleta de sombras con colores vibrantes y duraderos</p>
+                        </div>
+                        
+                        <div class="product-footer">
+                            <span class="price">$15.50</span>
+                            <button class="add-to-cart" 
+                                data-id="4" 
+                                data-name="Sombra de Ojos Palette" 
+                                data-price="15.50" 
+                                data-img="/placeholder.svg?height=350&width=300">
+                                <i class="fas fa-shopping-bag"></i> Añadir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="brochas" data-name="Set de Brochas Profesional" data-price="25.00">
+                    <div class="product-image">
+                        <img src="/placeholder.svg?height=350&width=300" alt="Set de Brochas Profesional" class="main-product-img">
+                        <div class="product-actions">
+                            <button class="quick-view-btn">Ver detalles</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-header">
+                            <h3>Set de Brochas Profesional</h3>
+                            <p class="product-description">Kit completo de brochas para maquillaje profesional</p>
+                        </div>
+                        
+                        <div class="product-footer">
+                            <span class="price">$25.00</span>
+                            <button class="add-to-cart" 
+                                data-id="5" 
+                                data-name="Set de Brochas Profesional" 
+                                data-price="25.00" 
+                                data-img="/placeholder.svg?height=350&width=300">
+                                <i class="fas fa-shopping-bag"></i> Añadir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="rostro" data-name="Base Líquida HD" data-price="12.99">
+                    <div class="product-image">
+                        <img src="/placeholder.svg?height=350&width=300" alt="Base Líquida HD" class="main-product-img">
+                        <div class="product-actions">
+                            <button class="quick-view-btn">Ver detalles</button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-header">
+                            <h3>Base Líquida HD</h3>
+                            <p class="product-description">Cobertura perfecta con acabado natural</p>
+                        </div>
+                        
+                        <div class="product-footer">
+                            <span class="price">$12.99</span>
+                            <button class="add-to-cart" 
+                                data-id="6" 
+                                data-name="Base Líquida HD" 
+                                data-price="12.99" 
+                                data-img="/placeholder.svg?height=350&width=300">
+                                <i class="fas fa-shopping-bag"></i> Añadir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="view-all-container">
+                <a href="#" class="btn btn-outline">Explorar todos los productos <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal de Filtros Avanzados -->
+    <div class="advanced-filters-modal" id="advanced-filters-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Filtros Avanzados</h3>
+                <button class="close-modal" id="close-advanced-filters">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <!-- Búsqueda avanzada -->
+                <div class="filter-group">
+                    <label class="filter-group-label">
+                        <i class="fas fa-search"></i>
+                        Búsqueda Detallada
+                    </label>
+                    <div class="advanced-search-box">
+                        <input type="text" class="advanced-search-input" placeholder="Buscar por nombre, marca, tono..." id="advanced-search-input">
+                        <div class="search-suggestions" id="advanced-search-suggestions"></div>
+                    </div>
+                </div>
+
+                <!-- Filtro por precio -->
+                <div class="filter-group">
+                    <label class="filter-group-label">
+                        <i class="fas fa-dollar-sign"></i>
+                        Rango de Precio
+                    </label>
+                    <div class="price-range">
+                        <div class="price-inputs">
+                            <input type="number" class="price-input" placeholder="Min" id="price-min" min="0">
+                            <span>-</span>
+                            <input type="number" class="price-input" placeholder="Max" id="price-max" min="0">
+                        </div>
+                        <div class="price-slider">
+                            <input type="range" class="range-slider" id="price-range" min="0" max="50" step="1">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filtro por marca -->
+                <div class="filter-group">
+                    <label class="filter-group-label">
+                        <i class="fas fa-tags"></i>
+                        Marcas
+                    </label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" value="dolce-bella" class="brand-filter">
+                            <span class="checkmark"></span>
+                            Dolce Bella
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" value="sheglam" class="brand-filter">
+                            <span class="checkmark"></span>
+                            Sheglam
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" value="beauty-creations" class="brand-filter">
+                            <span class="checkmark"></span>
+                            Beauty Creations
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Filtro por disponibilidad -->
+                <div class="filter-group">
+                    <label class="filter-group-label">
+                        <i class="fas fa-check-circle"></i>
+                        Disponibilidad
+                    </label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" value="in-stock" class="availability-filter">
+                            <span class="checkmark"></span>
+                            En Stock
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" value="new" class="availability-filter">
+                            <span class="checkmark"></span>
+                            Productos Nuevos
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" value="sale" class="availability-filter">
+                            <span class="checkmark"></span>
+                            En Oferta
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn-secondary" id="clear-filters">
+                    <i class="fas fa-eraser"></i>
+                    Limpiar Filtros
+                </button>
+                <button class="btn" id="apply-filters">
+                    <i class="fas fa-check"></i>
+                    Aplicar Filtros
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instagram Feed -->
+    <section class="section instagram-feed">
+        <div class="container">
+            <div class="section-title">
+                <h2>Síguenos en Instagram</h2>
+                <p>Descubre looks inspiradores y novedades de nuestros productos.</p>
+            </div>
+            <div class="instagram-grid">
+                <div class="instagram-item">
+                    <img src="/placeholder.svg?height=300&width=300" alt="Instagram post">
+                    <div class="instagram-overlay">
+                        <p>Nueva colección primavera</p>
+                    </div>
+                    <div class="instagram-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </div>
+                
+                <div class="instagram-item">
+                    <img src="/placeholder.svg?height=300&width=300" alt="Instagram post">
+                    <div class="instagram-overlay">
+                        <p>Tutorial de maquillaje</p>
+                    </div>
+                    <div class="instagram-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </div>
+                
+                <div class="instagram-item">
+                    <img src="/placeholder.svg?height=300&width=300" alt="Instagram post">
+                    <div class="instagram-overlay">
+                        <p>Detalles que enamoran</p>
+                    </div>
+                    <div class="instagram-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </div>
+                
+                <div class="instagram-item">
+                    <img src="/placeholder.svg?height=300&width=300" alt="Instagram post">
+                    <div class="instagram-overlay">
+                        <p>Base líquida HD</p>
+                    </div>
+                    <div class="instagram-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta" id="contact">
+        <div class="container">
+            <h2>¿Necesitas ayuda para elegir?</h2>
+            <p>Puedes escribirnos a nuestro WhatsApp y con gusto te ayudaremos.</p>
+            <a href="https://wa.me/1234567890" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> Chatear por WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-modal-content">
+            <div class="cart-modal-header">
+                <h2>MI CARRITO</h2>
+                <button class="close-cart">&times;</button>
+            </div>
+            
+            <div class="cart-container">
+                <div class="main-cart">
+                    <div id="cart-items">
+                        <!-- Los items del carrito se agregarán aquí dinámicamente -->
+                    </div>
+                    
+                    <div class="summary">
+                        <div class="summary-row">
+                            <span>Subtotal</span>
+                            <span id="subtotal">$ 0.00</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Envío</span>
+                            <span id="shipping">$ 5.99</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Descuento</span>
+                            <span id="discount">$ 0.00</span>
+                        </div>
+                        <div class="summary-row summary-total">
+                            <span>Total</span>
+                            <span id="total">$ 0.00</span>
+                        </div>
+                    </div>
+                    
+                    <button id="checkout-btn" class="checkout-btn">FINALIZAR COMPRA</button>
+                    
+                    <div class="payment-methods">
+                        <img src="/placeholder.svg?height=60&width=90" alt="Efectivo" class="payment-method">
+                        <img src="/placeholder.svg?height=60&width=90" alt="Pago movil" class="payment-method">
+                    </div>
+                </div>
+                
+                <div class="recommendations">
+                    <h3>TAMBIÉN TE PUEDE GUSTAR</h3>
+                    
+                    <div class="recommended-item">
+                        <img src="/placeholder.svg?height=80&width=80" alt="Polvo fijador" class="recommended-img">
+                        <div class="recommended-details">
+                            <h4>POLVO FIJADOR PINK FUTURE</h4>
+                            <p>IS BRIGHT - BEAUTY CREATIONS X BARBIE</p>
+                            <span class="recommended-price">$ 232.00</span>
+                            <button class="add-to-cart-btn" data-id="7" data-name="POLVO FIJADOR PINK FUTURE - BEAUTY CREATIONS X BARBIE" data-price="232.00" data-img="/placeholder.svg?height=80&width=80">
+                                <i class="fas fa-plus"></i> AGREGAR
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="recommended-item">
+                        <img src="/placeholder.svg?height=80&width=80" alt="PH Lip Oil" class="recommended-img">
+                        <div class="recommended-details">
+                            <h4>PH LIP OIL UNSTOPPABLE</h4>
+                            <p>BEAUTY CREATIONS X BARBIE</p>
+                            <span class="recommended-price">$ 192.00</span>
+                            <button class="add-to-cart-btn" data-id="8" data-name="PH LIP OIL UNSTOPPABLE - BEAUTY CREATIONS X BARBIE" data-price="192.00" data-img="/placeholder.svg?height=80&width=80">
+                                <i class="fas fa-plus"></i> AGREGAR
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
